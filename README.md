@@ -9,5 +9,3 @@ You can get to the after-auth section of the app after clicking login/sign in bu
 Some of the frontend components are missing like settings and store in the side menu. Also the currency system will be added into the app. User will earn coins by the amount of time spent focusing, however I'm not still sure what items will be available for the coins in the store.
 
 Site is entirely mobile responsive.
-
-Inspired by kanye2049.com
