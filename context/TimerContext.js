@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { createContext } from "react"
+import { createContext } from 'react';
 
-const TimerContext = createContext()
+const TimerContext = createContext();
 
 export default TimerContext;

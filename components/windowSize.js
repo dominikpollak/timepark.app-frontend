@@ -1,16 +1,15 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useWindowSize = () => {
-
-  const [width, setWidth] = useState(0)
-  const [height, setHeight] = useState(0)
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   const handleWindowResize = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
-  }
+  };
 
   useEffect(() => {
     // component is mounted and window is available
@@ -20,8 +19,7 @@ const useWindowSize = () => {
     return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
 
-  return [width, height]
+  return [width, height];
+};
 
-}
-
-export default useWindowSize 
+export default useWindowSize;
