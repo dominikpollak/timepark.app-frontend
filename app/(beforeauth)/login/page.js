@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { useRef } from 'react';
 
 export default function LoginPage() {
@@ -39,13 +40,15 @@ export default function LoginPage() {
           />
         </label>
         <div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
-            className="duration mt-16 text-[1.2em] border-[5px] px-10 py-2 bg-gradient-to-b from-cyan-600 to-violet-800 rounded-xl font-header text-white hover:from-cyan-500 hover:to-violet-700 hover:cursor-pointer"
-          >
-            Login
-          </motion.button>
+          <Link href="/timer">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              className="duration mt-16 text-[1.2em] border-[5px] px-10 py-2 bg-gradient-to-b from-cyan-600 to-violet-800 rounded-xl font-header text-white hover:from-cyan-500 hover:to-violet-700 hover:cursor-pointer"
+            >
+              Login
+            </motion.button>
+          </Link>
         </div>
       </form>
     </motion.div>

@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 export default function SignupPage() {
   const usernameRef = useRef();
@@ -59,13 +60,15 @@ export default function SignupPage() {
           />
         </label>
         <div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
-            className="duration-100 mt-16 text-[1.2em] border-[5px] border-black px-10 py-2 rounded-xl font-header text-black bg-gradient-to-b from-yellow-200 to-orange-500 hover:from-yellow-100 hover:to-orange-400 hover:cursor-pointer"
-          >
-            Sign up
-          </motion.button>
+          <Link href="/timer">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              className="duration-100 mt-16 text-[1.2em] border-[5px] border-black px-10 py-2 rounded-xl font-header text-black bg-gradient-to-b from-yellow-200 to-orange-500 hover:from-yellow-100 hover:to-orange-400 hover:cursor-pointer"
+            >
+              Sign up
+            </motion.button>
+          </Link>
         </div>
       </form>
     </motion.div>

@@ -214,13 +214,6 @@ export default function TimerPage() {
           </motion.div>
         </AnimatePresence>
       )}
-
-      <Link
-        href="/"
-        className="text-[2em] text-white absolute bottom-7 right-9 z-[50]"
-      >
-        back
-      </Link>
     </>
   );
 }
