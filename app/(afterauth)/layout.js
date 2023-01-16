@@ -47,6 +47,7 @@ export default function Layout({ children }) {
           <div className="fixed right-[1.5em] top-[1.25em] z-[60]">
             {soundsOn ? (
               <Image
+                priority
                 src={VolumeOn}
                 alt="Turn audio off icon"
                 height={35}
@@ -56,6 +57,7 @@ export default function Layout({ children }) {
               />
             ) : (
               <Image
+                priority
                 src={VolumeOff}
                 alt="Turn audio on icon"
                 height={35}
