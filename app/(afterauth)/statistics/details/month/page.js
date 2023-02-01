@@ -154,15 +154,15 @@ export default function DetailsMonth() {
   });
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="text-center w-[95%] lg:w-[70%] h-[80%] mx-auto z-40 relative bg-gradient-to-br from-slate-800/[0.9] to-slate-900/[0.9] pt-4 rounded-2xl border-[3px] border-pink-100 duration-100">
-        <div className="font-header text-[2.5em] md:text-[3.5em] p-3 text-transparent bg-clip-text bg-gradient-to-b from-yellow-50 to-yellow-500 tracking-wide border-b-[3px]">
+    <div className="flex h-screen items-end justify-center sm:items-center">
+      <div className="relative z-40 mx-auto mb-4 h-[85%] w-[95%] rounded-2xl border-[3px] border-pink-100 bg-gradient-to-br from-slate-800/[0.9] to-slate-900/[0.9] pt-4 text-center duration-100 sm:mb-0 sm:h-[80%] lg:w-[70%]">
+        <div className="border-b-[3px] bg-gradient-to-b from-yellow-50 to-yellow-500 bg-clip-text p-3 font-header text-[2.5em] tracking-wide text-transparent md:text-[3.5em]">
           Month Statistics
         </div>
 
-        <div className="h-[80%] flex flex-col justify-center text-[1.5em] lg:text-[1.8em] p-4">
-          <div className="relative flex justify-center items-start w-full h-[70%] mb-12">
-            <div className="w-[100%] lg:w-[90%] h-[90%] md:h-[100%] 2xl:h-[95%]">
+        <div className="flex h-[80%] flex-col justify-center p-4 text-[1.5em] lg:text-[1.8em]">
+          <div className="relative mb-12 flex h-[70%] w-full items-start justify-center">
+            <div className="h-[90%] w-[100%] md:h-[100%] lg:w-[90%] 2xl:h-[95%]">
               <BarChart chartData={userData} chartOptions={chartOptions} />
             </div>
           </div>
@@ -175,8 +175,8 @@ export default function DetailsMonth() {
             >
               <Link
                 href="/statistics/details/week"
-                className="shadow-xl px-[1.8rem] tracking-wide xl:px-14 py-1 text-[1em] md:text-[1em] xl:text-[1.1em] 
-                border-[5px] border-black bg-gradient-to-b from-yellow-200 to-orange-500 hover:from-yellow-100 hover:to-orange-400 rounded-xl font-header text-black duration-100"
+                className="rounded-xl border-[5px] border-black bg-gradient-to-b from-yellow-200 to-orange-500 px-[1.8rem] py-1 
+                font-header text-[1em] tracking-wide text-black shadow-xl duration-100 hover:from-yellow-100 hover:to-orange-400 md:text-[1em] xl:px-14 xl:text-[1.1em]"
               >
                 Week
               </Link>
@@ -189,8 +189,8 @@ export default function DetailsMonth() {
             >
               <Link
                 href="/statistics"
-                className="shadow-xl px-5 md:px-7 xl:px-6 py-1 text-[0.7em] md:text-[0.6em] xl:text-[0.7em] 
-                border-[4px] border-white bg-gradient-to-b from-cyan-600 to-violet-800 font-header text-white hover:from-cyan-500 hover:to-violet-700 rounded-xl duration-100"
+                className="rounded-xl border-[4px] border-white bg-gradient-to-b from-cyan-600 to-violet-800 px-5 py-1 
+                font-header text-[0.7em] text-white shadow-xl duration-100 hover:from-cyan-500 hover:to-violet-700 md:px-7 md:text-[0.6em] xl:px-6 xl:text-[0.7em]"
               >
                 Summary
               </Link>

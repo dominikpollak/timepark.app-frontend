@@ -105,13 +105,13 @@ export default function TimerPage() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 150 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="text-center mt-[6em] 2xl:mt-[10em] w-[95%] sm:w-[70%] md:w-[55%] lg:w-[40%] xl:w-[32%] mx-auto z-40 relative"
+            className="relative z-40 mx-auto mt-[6em] w-[95%] text-center sm:w-[70%] md:w-[55%] lg:w-[40%] xl:w-[32%] 2xl:mt-[10em]"
           >
             <div
               className={
                 timer.timerOn
-                  ? 'bg-gradient-to-br from-slate-800/[0.85] to-slate-900/[0.85] pt-8 rounded-2xl border-[3px] border-pink-100 duration-1000'
-                  : 'bg-gradient-to-br from-slate-800/[0.85] to-slate-900/[0.85] pt-12 rounded-2xl border-[3px] lg:border-[4px] border-pink-100 duration-500'
+                  ? 'rounded-2xl border-[3px] border-pink-100 bg-gradient-to-br from-slate-800/[0.85] to-slate-900/[0.85] pt-8 duration-1000'
+                  : 'rounded-2xl border-[3px] border-pink-100 bg-gradient-to-br from-slate-800/[0.85] to-slate-900/[0.85] pt-12 duration-500 lg:border-[4px]'
               }
             >
               <AnimatePresence
@@ -126,13 +126,13 @@ export default function TimerPage() {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: 'spring', stiffness: 100 }}
                     exit={{ scale: 0, opacity: 0 }}
-                    className="flex justify-center items-center mb-4"
+                    className="mb-4 flex items-center justify-center"
                   >
-                    <span className="text-[1.2em] font-paragraph text-transparent text-white xl:mr-5 mr-3">
+                    <span className="mr-3 font-paragraph text-[1.2em] text-transparent text-white xl:mr-5">
                       5
                     </span>
                     <input
-                      className="appearance-none xl:w-[15em] w-[12em] 2xl:w-[18em] xl:h-[2.5em] h-[2em] bg-gradient-to-l from-[#904fb5] to-[#342a82] rounded-full cursor-pointer shadow-md shadow-black/[1]"
+                      className="h-[2em] w-[12em] cursor-pointer appearance-none rounded-full bg-gradient-to-l from-[#904fb5] to-[#342a82] shadow-md shadow-black/[1] xl:h-[2.5em] xl:w-[15em] 2xl:w-[18em]"
                       type="range"
                       min={5}
                       max={150}
@@ -141,7 +141,7 @@ export default function TimerPage() {
                       value={minutes}
                       id="timerInput"
                     />
-                    <span className="text-[1.2em] font-paragraph text-transparent text-white xl:ml-5 ml-3">
+                    <span className="ml-3 font-paragraph text-[1.2em] text-transparent text-white xl:ml-5">
                       150
                     </span>
                   </motion.div>
@@ -153,8 +153,8 @@ export default function TimerPage() {
                 <p
                   className={
                     timer.timerOn
-                      ? 'text-transparent bg-clip-text bg-gradient-to-b from-yellow-50 to-yellow-500 xl:text-[6.3em] text-[5.5em] font-numbers mb-0 mt-0 tracking-wider'
-                      : 'text-transparent bg-clip-text bg-gradient-to-b from-yellow-50 to-yellow-500 xl:text-[6.3em] text-[5.5em] font-numbers mb-6 mt-0 tracking-wider'
+                      ? 'mb-0 mt-0 bg-gradient-to-b from-yellow-50 to-yellow-500 bg-clip-text font-numbers text-[5.5em] tracking-wider text-transparent xl:text-[6.3em]'
+                      : 'mb-6 mt-0 bg-gradient-to-b from-yellow-50 to-yellow-500 bg-clip-text font-numbers text-[5.5em] tracking-wider text-transparent xl:text-[6.3em]'
                   }
                 >
                   {minutes.toString().length > 2
@@ -178,9 +178,9 @@ export default function TimerPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
-                  className="text-[1.6em] tracking-wide sm:text-[1.6em] md:text-[2em] xl:text-[2em] 2xl:text-[2.7em] mb-12
-            border-[4px] px-5 md:px-7 xl:px-10 py-1 bg-gradient-to-b from-cyan-600 to-violet-800 rounded-xl
-                font-header text-white hover:from-cyan-500 hover:to-violet-700 duration-100 disabled:opacity-40 disabled:hover:none"
+                  className="disabled:hover:none mb-12 rounded-xl border-[4px] bg-gradient-to-b from-cyan-600 to-violet-800
+            px-5 py-1 font-header text-[1.6em] tracking-wide text-white duration-100 hover:from-cyan-500 hover:to-violet-700
+                disabled:opacity-40 sm:text-[1.6em] md:px-7 md:text-[2em] xl:px-10 xl:text-[2em] 2xl:text-[2.7em]"
                   onClick={handleStart}
                 >
                   Start
@@ -191,8 +191,8 @@ export default function TimerPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
-                  className="text-[1.2em] tracking-wide sm:text-[1.1em] md:text-[1.1em] xl:text-[1.2em] mb-12
-            border-[4px] px-5 md:px-7 xl:px-4 py-1 bg-transparent rounded-xl font-header text-white hover:bg-slate-100/[0.15] duration-100"
+                  className="mb-12 rounded-xl border-[4px] bg-transparent px-5 py-1
+            font-header text-[1.2em] tracking-wide text-white duration-100 hover:bg-slate-100/[0.15] sm:text-[1.1em] md:px-7 md:text-[1.1em] xl:px-4 xl:text-[1.2em]"
                   onClick={handleStop}
                 >
                   CANCEL ({cancelTime})
@@ -203,8 +203,8 @@ export default function TimerPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
-                  className="text-[1.2em] tracking-wide sm:text-[1.1em] md:text-[1.1em] xl:text-[1.2em] mb-12
-            border-[4px] px-5 md:px-7 xl:px-4 py-1 bg-gradient-to-b from-red-600 to-red-900 hover:from-red-500 hover:to-red-800 rounded-xl font-header text-white duration-100"
+                  className="mb-12 rounded-xl border-[4px] bg-gradient-to-b from-red-600 to-red-900
+            px-5 py-1 font-header text-[1.2em] tracking-wide text-white duration-100 hover:from-red-500 hover:to-red-800 sm:text-[1.1em] md:px-7 md:text-[1.1em] xl:px-4 xl:text-[1.2em]"
                   onClick={handleStop}
                 >
                   Give up

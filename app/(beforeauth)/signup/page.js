@@ -21,17 +21,17 @@ export default function SignupPage() {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 150 }}
       exit={{ scale: 0, opacity: 0 }}
-      className="w-[100%] text-center relative text-white text-[1.2em] md:text-[1.5em] xl:text-[1.9em] mb-24 font-header duration-200"
+      className="relative mb-24 w-[100%] text-center font-header text-[1.2em] text-white duration-200 md:text-[1.5em] xl:text-[1.9em]"
     >
       <form
-        className="mx-auto w-[85%] xl:w-[60%] border-[6px] p-10 rounded-xl mt-[6em]"
+        className="mx-auto mt-[6em] w-[85%] rounded-xl border-[6px] p-10 xl:w-[60%]"
         onSubmit={handleSignup}
       >
         <label>
           <div>Username: </div>
           <input
             ref={usernameRef}
-            className="w-[100%] md:w-[75%] mb-6 rounded-3xl py-2 px-4 mt-2 text-black font-paragraph text-center"
+            className="mb-6 mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="text"
           />
         </label>
@@ -39,7 +39,7 @@ export default function SignupPage() {
           <div>Email: </div>
           <input
             ref={emailRef}
-            className="w-[100%] md:w-[75%] mb-6 rounded-3xl py-2 px-4 mt-2 text-black font-paragraph text-center"
+            className="mb-6 mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="email"
           />
         </label>
@@ -47,7 +47,7 @@ export default function SignupPage() {
           <div>Password: </div>
           <input
             ref={pswdRef}
-            className="w-[100%] md:w-[75%] mb-6 rounded-3xl py-2 px-4 mt-2 text-black font-paragraph text-center"
+            className="mb-6 mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="password"
           />
         </label>
@@ -55,7 +55,7 @@ export default function SignupPage() {
           <div>Repeat password: </div>
           <input
             ref={pswd2Ref}
-            className="w-[100%] md:w-[75%] rounded-3xl py-2 px-4 mt-2 text-black font-paragraph text-center"
+            className="mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="password"
           />
         </label>
@@ -64,7 +64,7 @@ export default function SignupPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="duration-100 mt-16 text-[1.2em] border-[5px] border-black px-10 py-2 rounded-xl font-header text-black bg-gradient-to-b from-yellow-200 to-orange-500 hover:from-yellow-100 hover:to-orange-400 hover:cursor-pointer"
+              className="mt-16 rounded-xl border-[5px] border-black bg-gradient-to-b from-yellow-200 to-orange-500 px-10 py-2 font-header text-[1.2em] text-black duration-100 hover:cursor-pointer hover:from-yellow-100 hover:to-orange-400"
             >
               Sign up
             </motion.button>

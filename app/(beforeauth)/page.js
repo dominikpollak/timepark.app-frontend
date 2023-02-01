@@ -8,7 +8,7 @@ export default function HomePage() {
   const [width] = useWindowSize();
 
   return (
-    <div className="min-w-[100%] mt-14 text-center overflow-hidden">
+    <div className="mt-14 min-w-[100%] overflow-hidden text-center">
       <SlideParagraph initialValue={(width / 1.5) * -1}>
         Staying on task seems is a real challenge for our screen-bound
         generation. The Be Focused lets you get things done by breaking up

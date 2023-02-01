@@ -17,17 +17,17 @@ export default function LoginPage() {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 150 }}
       exit={{ scale: 0, opacity: 0 }}
-      className="w-[100%] text-center relative text-white text-[1.2em] md:text-[1.5em] xl:text-[1.9em] mb-24 font-header duration-200"
+      className="relative mb-24 w-[100%] text-center font-header text-[1.2em] text-white duration-200 md:text-[1.5em] xl:text-[1.9em]"
     >
       <form
-        className="mx-auto w-[85%] xl:w-[60%] border-[6px] p-10 rounded-xl mt-[6em]"
+        className="mx-auto mt-[6em] w-[85%] rounded-xl border-[6px] p-10 xl:w-[60%]"
         onSubmit={handleLogin}
       >
         <label>
           <div>Username/Email: </div>
           <input
             ref={userRef}
-            className="w-[100%] md:w-[75%] mb-12 rounded-3xl py-2 px-4 mt-2 text-black font-paragraph text-center"
+            className="mb-12 mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="text"
           />
         </label>
@@ -35,7 +35,7 @@ export default function LoginPage() {
           <div>Password: </div>
           <input
             ref={pswdRef}
-            className="w-[100%] md:w-[75%] rounded-3xl py-2 px-4 mt-2 text-black font-paragraph text-center"
+            className="mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="password"
           />
         </label>
@@ -44,7 +44,7 @@ export default function LoginPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="duration mt-16 text-[1.2em] border-[5px] px-10 py-2 bg-gradient-to-b from-cyan-600 to-violet-800 rounded-xl font-header text-white hover:from-cyan-500 hover:to-violet-700 hover:cursor-pointer"
+              className="duration mt-16 rounded-xl border-[5px] bg-gradient-to-b from-cyan-600 to-violet-800 px-10 py-2 font-header text-[1.2em] text-white hover:cursor-pointer hover:from-cyan-500 hover:to-violet-700"
             >
               Login
             </motion.button>

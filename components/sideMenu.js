@@ -63,19 +63,19 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
           animate="visible"
           exit="exit"
           ref={sidebarRef}
-          className="fixed right-0 top-1 h-[28em] lg:h-[33em] w-[12em] lg:w-[16em] border-[4px] border-white bg-[#101a04]/[0.6] backdrop-blur-lg rounded-2xl z-50 overflow-hidden"
+          className="fixed right-0 top-1 z-50 h-[28em] w-[12em] overflow-hidden rounded-2xl border-[4px] border-white bg-[#101a04]/[0.6] backdrop-blur-lg lg:h-[33em] lg:w-[16em]"
         >
           {/* className='fixed right-2 top-2 h-[33em] w-[16em] border-[5px] border-[#814833] bg-[#3c150a] rounded-2xl z-50 overflow-hidden'> */}
 
-          <div className="h-[92%] pt-[33%] flex flex-col items-center justify-between text-center text-[1.4em] sm:text-[2em] xl:text-[1.7em] font-paragraph tracking-wide">
+          <div className="flex h-[92%] flex-col items-center justify-between pt-[33%] text-center font-paragraph text-[1.4em] tracking-wide sm:text-[2em] xl:text-[1.7em]">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="shadow-xl w-[80%] border-[4px] border-white bg-gradient-to-b bg-transparent hover:bg-purple-500/[0.25] rounded-xl text-white duration-100"
+              className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b text-white shadow-xl duration-100 hover:bg-purple-500/[0.25]"
             >
               <Link
                 href="/timer"
-                className="w-full h-full block px-5 md:px-7 xl:px-10"
+                className="block h-full w-full px-5 md:px-7 xl:px-10"
                 onClick={untoggle}
               >
                 Focus
@@ -85,11 +85,11 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="shadow-xl w-[80%] border-[4px] border-white bg-gradient-to-b bg-transparent hover:bg-purple-500/[0.25] rounded-xl text-white duration-100"
+              className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b text-white shadow-xl duration-100 hover:bg-purple-500/[0.25]"
             >
               <Link
                 href="/statistics"
-                className="w-full h-full block px-5 md:px-7 xl:px-10"
+                className="block h-full w-full px-5 md:px-7 xl:px-10"
                 onClick={untoggle}
               >
                 Statistics
@@ -99,11 +99,11 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="shadow-xl w-[80%] border-[4px] border-white bg-gradient-to-b bg-transparent hover:bg-purple-500/[0.25] rounded-xl text-white duration-100"
+              className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b text-white shadow-xl duration-100 hover:bg-purple-500/[0.25]"
             >
               <Link
                 href="/friends"
-                className="w-full h-full block px-5 md:px-7 xl:px-10"
+                className="block h-full w-full px-5 md:px-7 xl:px-10"
                 onClick={untoggle}
               >
                 Friends
@@ -113,11 +113,11 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="shadow-xl w-[80%] border-[4px] border-white bg-gradient-to-b bg-transparent hover:bg-purple-500/[0.25] rounded-xl text-white duration-100"
+              className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b text-white shadow-xl duration-100 hover:bg-purple-500/[0.25]"
             >
               <Link
                 href="/store"
-                className="w-full h-full block px-5 md:px-7 xl:px-10"
+                className="block h-full w-full px-5 md:px-7 xl:px-10"
                 onClick={untoggle}
               >
                 Store
@@ -127,11 +127,11 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              className="shadow-xl w-[80%] border-[4px] border-white bg-gradient-to-b bg-transparent hover:bg-purple-500/[0.25] rounded-xl text-white duration-100"
+              className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b text-white shadow-xl duration-100 hover:bg-purple-500/[0.25]"
             >
               <Link
                 href="/settings"
-                className="w-full h-full block px-5 md:px-7 xl:px-10"
+                className="block h-full w-full px-5 md:px-7 xl:px-10"
                 onClick={untoggle}
               >
                 Settings
@@ -142,7 +142,7 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               onClick={logout}
-              className="border-[4px] border-white px-5 md:px-7 xl:px-10 bg-gradient-to-b bg-transparent hover:bg-purple-500/[0.25] rounded-xl text-white duration-100 w-[80%]"
+              className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b px-5 text-white duration-100 hover:bg-purple-500/[0.25] md:px-7 xl:px-10"
             >
               Logout
             </motion.button>

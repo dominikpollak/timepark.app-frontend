@@ -28,36 +28,36 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body className="bg-gradient-to-r from-[#6b3506] to-[#26230b] overflow-x-hidden">
+      <body className="overflow-x-hidden bg-gradient-to-r from-[#6b3506] to-[#26230b]">
         <Image
           priority
           src={bgImg2}
           alt="Background image"
-          className="nodrag z-10 object-cover max-w-[100%] min-h-[34em] max-h-[83vh] brightness-[90%] border-b-[4px] border-[#410308]/[0.2]"
+          className="nodrag z-10 max-h-[83vh] min-h-[34em] max-w-[100%] border-b-[4px] border-[#410308]/[0.2] object-cover brightness-[90%]"
         />
 
         <div
           className="
-        z-20 absolute translate-y-[-170%] sm:translate-y-[-145%] md:translate-y-[-130%] lg:translate-y-[-118%] xl:translate-y-[-163%] 2xl:translate-y-[-170%] 3xl:translate-y-[-190%] text-center w-[100%]"
+        absolute z-20 w-[100%] translate-y-[-170%] text-center sm:translate-y-[-145%] md:translate-y-[-130%] lg:translate-y-[-118%] xl:translate-y-[-163%] 2xl:translate-y-[-170%] 3xl:translate-y-[-190%]"
         >
           <Link
             href="/"
             onClick={handleScrollStart}
-            className="text-[6.5em] sm:text-[8.5em] md:text-[10em] lg:text-[12em] 2xl:text-[14em] font-black tracking-wide font-header leading-none
-            text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 to-orange-400 brightness-[120%] hover:brightness-[140%] duration-500"
+            className="bg-gradient-to-b from-yellow-100 to-orange-400 bg-clip-text font-header text-[6.5em] font-black leading-none tracking-wide
+            text-transparent brightness-[120%] duration-500 hover:brightness-[140%] sm:text-[8.5em] md:text-[10em] lg:text-[12em] 2xl:text-[14em]"
           >
             TIME PARK
           </Link>
 
           <h2
-            className="text-[1.7em] md:text-[2em] xl:text-[2.7em] font-header brightness-[140%]
-            text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 to-orange-400"
+            className="bg-gradient-to-b from-yellow-100 to-orange-400 bg-clip-text font-header
+            text-[1.7em] text-transparent brightness-[140%] md:text-[2em] xl:text-[2.7em]"
           >
             .APP
           </h2>
         </div>
 
-        <div className="relative mx-auto translate-y-[-3%] flex justify-evenly rounded-2xl pb-8 pt-6 md:py-6 2xl:py-8 w-[85%] md:w-[100%] xl:mb-[8em]">
+        <div className="relative mx-auto flex w-[85%] translate-y-[-3%] justify-evenly rounded-2xl pb-8 pt-6 md:w-[100%] md:py-6 xl:mb-[8em] 2xl:py-8">
           <div className="custom-shape-divider-top-1670661657 w-screen">
             <svg
               data-name="Layer 1"
@@ -75,13 +75,13 @@ export default function RootLayout({ children }) {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.9 }}
-            className="relative border-[5px] bg-gradient-to-b from-cyan-600 to-violet-800 rounded-xl
-            font-header text-white hover:from-cyan-500 hover:to-violet-700 duration-100 shadow-xl mx-4"
+            className="relative mx-4 rounded-xl border-[5px] bg-gradient-to-b from-cyan-600
+            to-violet-800 font-header text-white shadow-xl duration-100 hover:from-cyan-500 hover:to-violet-700"
           >
             <Link
               onClick={handleScrollStart}
               href="/login"
-              className="text-[1.4em] sm:text-[2em] md:text-[2.4em] 2xl:text-[3.3em] w-full h-full inline-block px-5 md:px-7 xl:px-10 py-2 "
+              className="inline-block h-full w-full px-5 py-2 text-[1.4em] sm:text-[2em] md:px-7 md:text-[2.4em] xl:px-10 2xl:text-[3.3em] "
             >
               Login
             </Link>
@@ -90,12 +90,12 @@ export default function RootLayout({ children }) {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.9 }}
-            className="relative shadow-xl border-[5px] border-black bg-gradient-to-b from-yellow-200 to-orange-500 hover:from-yellow-100 hover:to-orange-400 rounded-xl font-header text-black duration-100"
+            className="relative rounded-xl border-[5px] border-black bg-gradient-to-b from-yellow-200 to-orange-500 font-header text-black shadow-xl duration-100 hover:from-yellow-100 hover:to-orange-400"
           >
             <Link
               onClick={handleScrollStart}
               href="/signup"
-              className="h-full w-full inline-block text-[1.4em] sm:text-[2em] md:text-[2.4em] 2xl:text-[3.3em] px-5 md:px-7 xl:px-10 py-2 "
+              className="inline-block h-full w-full px-5 py-2 text-[1.4em] sm:text-[2em] md:px-7 md:text-[2.4em] xl:px-10 2xl:text-[3.3em] "
             >
               Sign up
             </Link>
@@ -104,10 +104,10 @@ export default function RootLayout({ children }) {
 
         <div ref={ref}>{children}</div>
         <footer>
-          <div className="text-center text-white text-xl pb-6 pt-12">
+          <div className="pb-6 pt-12 text-center text-xl text-white">
             All rights reserved 2022
           </div>
-          <div className="text-right text-white lg:text-lg text-md mr-3 mb-1">
+          <div className="text-md mr-3 mb-1 text-right text-white lg:text-lg">
             pic by xxx from freepik
           </div>
         </footer>

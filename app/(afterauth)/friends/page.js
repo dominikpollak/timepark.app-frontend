@@ -51,25 +51,25 @@ export default function Friends() {
   ];
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="flex h-screen items-center justify-center">
       <AnimatePresence>
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 150 }}
           exit={{ scale: 0, opacity: 0 }}
-          className="text-center w-[80%] lg:w-[50%] xl:w-[40%] h-[70%] mx-auto z-40 relative bg-gradient-to-br from-slate-800/[0.9] to-slate-900/[0.9] pt-4 rounded-2xl border-[3px] border-pink-100 duration-50"
+          className="duration-50 relative z-40 mx-auto h-[70%] w-[80%] rounded-2xl border-[3px] border-pink-100 bg-gradient-to-br from-slate-800/[0.9] to-slate-900/[0.9] pt-4 text-center lg:w-[50%] xl:w-[40%]"
         >
-          <div className="font-header text-[2.5em] md:text-[3.5em] text-transparent bg-clip-text bg-gradient-to-b from-yellow-50 to-yellow-500 tracking-wide border-b-[3px] pb-2">
+          <div className="border-b-[3px] bg-gradient-to-b from-yellow-50 to-yellow-500 bg-clip-text pb-2 font-header text-[2.5em] tracking-wide text-transparent md:text-[3.5em]">
             Friends
           </div>
-          <div className="h-[80%] text-[1.5em] md:text-[1.8em] xl:text-[2.1em] py-4 pl-6 mr-1 overflow-scroll overflow-x-hidden scrollhost">
+          <div className="scrollhost mr-1 h-[80%] overflow-scroll overflow-x-hidden py-4 pl-6 text-[1.5em] md:text-[1.8em] xl:text-[2.1em]">
             {/* <div className='scroll-bar'></div> */}
 
             {friendsList &&
               friendsList.map((friend) => (
                 <div className="mt-12 border-b-[1px] pb-12" key={friend.name}>
-                  <div className="flex flex-col md:flex-row justify-center items-center gap-4 lg:gap-8 mb-8 ">
+                  <div className="mb-8 flex flex-col items-center justify-center gap-4 md:flex-row lg:gap-8 ">
                     <div>
                       <Image
                         src={friend.photo}
@@ -89,8 +89,8 @@ export default function Friends() {
                   >
                     <Link
                       href="/friends/id"
-                      className="shadow-xl px-5 md:px-7 xl:px-6 py-1 text-[0.7em] md:text-[0.6em] xl:text-[0.7em] 
-                border-[4px] border-white bg-gradient-to-b from-cyan-600 to-violet-800 font-header text-white hover:from-cyan-500 hover:to-violet-700 rounded-xl duration-100"
+                      className="rounded-xl border-[4px] border-white bg-gradient-to-b from-cyan-600 to-violet-800 px-5 py-1 
+                font-header text-[0.7em] text-white shadow-xl duration-100 hover:from-cyan-500 hover:to-violet-700 md:px-7 md:text-[0.6em] xl:px-6 xl:text-[0.7em]"
                     >
                       Show
                     </Link>

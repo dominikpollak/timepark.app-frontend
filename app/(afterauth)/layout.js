@@ -34,9 +34,9 @@ export default function Layout({ children }) {
                 width={70}
                 height={70}
                 alt="Your profile photo"
-                className="nodrag w-[50px] md-w-[70px] rounded-full"
+                className="nodrag md-w-[70px] w-[50px] rounded-full"
               ></Image>
-              <span className="ml-4 text-yellow-200 font-paragraph text-xl md:text-2xl">
+              <span className="ml-4 font-paragraph text-xl text-yellow-200 md:text-2xl">
                 Matthew
               </span>
             </div>
@@ -52,7 +52,7 @@ export default function Layout({ children }) {
                 alt="Turn audio off icon"
                 height={35}
                 width={35}
-                className="invert hover:invert-[.75] hover:cursor-pointer"
+                className="invert hover:cursor-pointer hover:invert-[.75]"
                 onClick={() => setSoundsOn(!soundsOn)}
               />
             ) : (
@@ -62,7 +62,7 @@ export default function Layout({ children }) {
                 alt="Turn audio on icon"
                 height={35}
                 width={35}
-                className="invert hover:invert-[.75] hover:cursor-pointer"
+                className="invert hover:cursor-pointer hover:invert-[.75]"
                 onClick={() => setSoundsOn(!soundsOn)}
               />
             )}
@@ -74,7 +74,7 @@ export default function Layout({ children }) {
               alt="Menu icon"
               height={50}
               width={40}
-              className="invert hover:invert-[.75] cursor-pointer"
+              className="cursor-pointer invert hover:invert-[.75]"
               onClick={() => setIsToggled(!isToggled)}
             />
           </div>
@@ -107,7 +107,7 @@ export default function Layout({ children }) {
         <Image
           src={Bg2}
           alt="Background Image"
-          className="nodrag h-screen object-cover object-[0%] md:object-[85%] lg:object-center fixed z-10"
+          className="nodrag fixed z-10 h-screen object-cover object-[0%] md:object-[85%] lg:object-center"
         />
 
         <TimerContext.Provider value={{ timerOn, setTimerOn }}>

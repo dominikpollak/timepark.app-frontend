@@ -19,7 +19,7 @@ export default function SlideParagraph({ children, initialValue }) {
           isInView ? { x: 0, opacity: 1 } : { x: initialValue, opacity: 0 }
         }
         transition={{ delay: 0.2, duration: 1 }}
-        className="relative text-white text-[1.2em] sm:text-[1.4em] xl:text-[1.6em] mx-auto w-[75%] xl:w-[60%] 2xl:w-[45%] mb-[3em] font-paragraph border-[5px] p-6 rounded-xl bg-slate-900/[0.65] z-30"
+        className="relative z-30 mx-auto mb-[3em] w-[75%] rounded-xl border-[5px] bg-slate-900/[0.65] p-6 font-paragraph text-[1.2em] text-white sm:text-[1.4em] xl:w-[60%] xl:text-[1.6em] 2xl:w-[45%]"
       >
         {children}
       </motion.article>
