@@ -32,7 +32,7 @@ export default function Layout({ children }) {
       }
       setLoading(false);
     });
-  }, [router, loading]);
+  }, [router]);
 
   if (loading)
     return (
