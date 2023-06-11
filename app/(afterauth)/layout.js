@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
+import LoadingWheel from '../../components/LoadingWheel';
 import SideMenu from '../../components/sideMenu';
 import TimerContext from '../../context/TimerContext';
 import { auth } from '../../firebase/clientApp';
@@ -13,7 +14,6 @@ import ProfilePhoto from '../../public/assets/profile-pic.svg';
 import VolumeOff from '../../public/assets/volume_off.png';
 import VolumeOn from '../../public/assets/volume_on.png';
 import '../../styles/globals.css';
-import LoadingWheel from '../../components/LoadingWheel';
 
 export default function Layout({ children }) {
   const [soundsOn, setSoundsOn] = useState(false);
@@ -32,13 +32,32 @@ export default function Layout({ children }) {
       }
       setLoading(false);
     });
-  }, []);
+  }, [router]);
 
   if (loading)
     return (
       <html>
         <body className="">
           <LoadingWheel />
+
+          <div className="anim relative z-20 h-0 ">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
           <Image
             src={Bg2}
             alt="Background Image"
