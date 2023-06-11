@@ -1,72 +1,80 @@
 'use client';
+import { collection, getDocs } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BarChart from '../../../../../components/barChart';
+import { auth, db } from '../../../../../firebase/clientApp';
 
 export default function DetailsWeek() {
-  const weekData = [
-    {
-      day: 'Monday',
-      date: '22.3.2022',
-      minutesFocused: 180,
-    },
-    {
-      day: 'Tuesday',
-      date: '23.3.2022',
-      minutesFocused: 120,
-    },
-    {
-      day: 'Wednesday',
-      date: '24.3.2022',
-      minutesFocused: 220,
-    },
-    {
-      day: 'Thursday',
-      date: '25.3.2022',
-      minutesFocused: 60,
-    },
-    {
-      day: 'Friday',
-      date: '26.3.2022',
-      minutesFocused: 100,
-    },
-    {
-      day: 'Saturday',
-      date: '27.3.2022',
-      minutesFocused: 30,
-    },
-    {
-      day: 'Sunday',
-      date: '28.3.2022',
-      minutesFocused: 180,
-    },
-  ];
+  const [myDocs, setMyDocs] = useState([]);
 
-  const [userData, setUserData] = useState({
-    labels: weekData.map((data) => data.day),
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'focused_time'));
+        const docs = querySnapshot.docs.map((doc) => doc.data());
+        const filteredDocs = docs.filter(
+          (doc) => doc.userID === auth.currentUser.uid
+        );
+        setMyDocs(filteredDocs);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  const userData = {
+    labels: daysOfWeek,
     datasets: [
       {
         label: 'Minutes focused',
-        data: weekData.map((data) => data.minutesFocused),
+        data: daysOfWeek.map((day) => {
+          const dayData = myDocs.filter((doc) => doc.dayOfWeek === day);
+          const totalMinutes = dayData.reduce(
+            (sum, doc) => sum + doc.minutes,
+            0
+          );
+          return totalMinutes;
+        }),
         backgroundColor: 'rgb(253 224 71)',
         borderColor: 'black',
         borderWidth: 3,
       },
     ],
-  });
+  };
 
-  const [chartOptions, setChartOptions] = useState({
+  const chartOptions = {
     scales: {
+      x: {
+        title: {
+          display: true,
+          font: {
+            size: 15,
+          },
+          precision: 0,
+        },
+      },
       y: {
+        title: {
+          display: true,
+          font: {
+            size: 15,
+          },
+        },
         ticks: {
           font: {
-            size: 13,
+            size: 15,
           },
+          precision: 0,
         },
       },
     },
-  });
+  };
 
   return (
     <div className="flex h-screen items-end justify-center sm:items-center">

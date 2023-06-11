@@ -1,139 +1,18 @@
 'use client';
+import { collection, getDocs } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import BarChart from '../../../../../components/barChart';
-import { useState } from 'react';
+import { db } from '../../../../../firebase/clientApp';
 
 export default function DetailsMonth() {
-  const monthData = [
-    {
-      date: '1.3.2022',
-      minutesFocused: 180,
-    },
-    {
-      date: '2.3.2022',
-      minutesFocused: 120,
-    },
-    {
-      date: '3.3.2022',
-      minutesFocused: 220,
-    },
-    {
-      date: '4.3.2022',
-      minutesFocused: 60,
-    },
-    {
-      date: '5.3.2022',
-      minutesFocused: 100,
-    },
-    {
-      date: '6.3.2022',
-      minutesFocused: 30,
-    },
-    {
-      date: '7.3.2022',
-      minutesFocused: 180,
-    },
-    {
-      date: '8.3.2022',
-      minutesFocused: 280,
-    },
-    {
-      date: '9.3.2022',
-      minutesFocused: 110,
-    },
-    {
-      date: '10.3.2022',
-      minutesFocused: 180,
-    },
-    {
-      date: '11.3.2022',
-      minutesFocused: 180,
-    },
-    {
-      date: '12.3.2022',
-      minutesFocused: 90,
-    },
-    {
-      date: '13.3.2022',
-      minutesFocused: 120,
-    },
-    {
-      date: '14.3.2022',
-      minutesFocused: 100,
-    },
-    {
-      date: '15.3.2022',
-      minutesFocused: 130,
-    },
-    {
-      date: '16.3.2022',
-      minutesFocused: 180,
-    },
-    {
-      date: '17.3.2022',
-      minutesFocused: 190,
-    },
-    {
-      date: '18.3.2022',
-      minutesFocused: 210,
-    },
-    {
-      date: '19.3.2022',
-      minutesFocused: 140,
-    },
-    {
-      date: '20.3.2022',
-      minutesFocused: 140,
-    },
-    {
-      date: '21.3.2022',
-      minutesFocused: 50,
-    },
-    {
-      date: '22.3.2022',
-      minutesFocused: 50,
-    },
-    {
-      date: '23.3.2022',
-      minutesFocused: 110,
-    },
-    {
-      date: '24.3.2022',
-      minutesFocused: 80,
-    },
-    {
-      date: '25.3.2022',
-      minutesFocused: 220,
-    },
-    {
-      date: '26.3.2022',
-      minutesFocused: 100,
-    },
-    {
-      date: '27.3.2022',
-      minutesFocused: 140,
-    },
-    {
-      date: '28.3.2022',
-      minutesFocused: 200,
-    },
-    {
-      date: '29.3.2022',
-      minutesFocused: 150,
-    },
-    {
-      date: '30.3.2022',
-      minutesFocused: 120,
-    },
-  ];
-
   const [userData, setUserData] = useState({
-    labels: monthData.map((data) => data.date),
+    labels: [],
     datasets: [
       {
         label: 'Minutes focused',
-        data: monthData.map((data) => data.minutesFocused),
+        data: [],
         backgroundColor: 'rgb(253 224 71)',
         borderColor: 'black',
         borderWidth: 3,
@@ -141,21 +20,79 @@ export default function DetailsMonth() {
     ],
   });
 
-  const [chartOptions, setChartOptions] = useState({
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'focused_time'));
+        const docs = querySnapshot.docs.map((doc) => doc.data());
+        const monthData = docs.map((doc) => ({
+          date: doc.date.split('-').reverse().join('.'),
+          minutesFocused: Math.round(doc.minutes),
+        }));
+
+        // Get current month and year
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth() + 1; // January is 0
+        const currentYear = currentDate.getFullYear();
+
+        // Generate labels for the entire month
+        const labels = [];
+        const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+        for (let i = 1; i <= daysInMonth; i++) {
+          labels.push(`${i}.${currentMonth}.`);
+        }
+
+        // Assign data to the available dates
+        const data = Array(daysInMonth).fill(null);
+        monthData.forEach((dataPoint) => {
+          const [day, month] = dataPoint.date.split('.');
+          const index = parseInt(day, 10) - 1;
+          if (parseInt(month, 10) === currentMonth) {
+            data[index] = dataPoint.minutesFocused;
+          }
+        });
+
+        setUserData((prevData) => ({
+          ...prevData,
+          labels,
+          datasets: [
+            {
+              ...prevData.datasets[0],
+              data,
+            },
+          ],
+        }));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const chartOptions = {
     scales: {
       y: {
+        beginAtZero: true, // Start Y-axis from zero
         ticks: {
           font: {
             size: 13,
           },
+          precision: 0, // Display whole numbers only
+        },
+      },
+      x: {
+        ticks: {
+          font: {
+            size: 11,
+          },
         },
       },
     },
-  });
-
+  };
   return (
     <div className="flex h-screen items-end justify-center sm:items-center">
-      <div className="relative z-40 mx-auto mb-4 h-[85%] w-[95%] rounded-2xl border-[3px] border-pink-100 bg-gradient-to-br from-slate-800/[0.9] to-slate-900/[0.9] pt-4 text-center duration-100 sm:mb-0 sm:h-[80%] lg:w-[70%]">
+      <div className="relative z-40 mx-auto mb-4 h-[85%] w-[95%] rounded-2xl border-[3px] border-pink-100 bg-gradient-to-br from-slate-800/[0.9] to-slate-900/[0.9] pt-4 text-center duration-100 sm:mb-0 sm:h-[80%] lg:w-[85%]">
         <div className="border-b-[3px] bg-gradient-to-b from-yellow-50 to-yellow-500 bg-clip-text p-3 font-header text-[2.5em] tracking-wide text-transparent md:text-[3.5em]">
           Month Statistics
         </div>

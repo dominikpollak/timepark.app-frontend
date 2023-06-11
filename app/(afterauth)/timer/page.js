@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
-import { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import TimerContext from '../../../context/TimerContext';
+import { addDoc, collection } from 'firebase/firestore';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useContext, useEffect, useState } from 'react';
 import FocusCompleteModal from '../../../components/focusCompleteModal';
+import TimerContext from '../../../context/TimerContext';
+import { auth, db } from '../../../firebase/clientApp';
 
 export default function TimerPage() {
   const [minutes, setMinutes] = useState(0);
@@ -34,6 +34,49 @@ export default function TimerPage() {
         if (seconds == 1 && minutes == 0) {
           timer.setTimerOn(false);
           setHasCompleted(true);
+
+          let currentDay = '';
+          const newDate = new Date();
+
+          switch (newDate.getDay()) {
+            case 0:
+              currentDay = 'Sun';
+              break;
+            case 1:
+              currentDay = 'Mon';
+              break;
+            case 2:
+              currentDay = 'Tue';
+              break;
+            case 3:
+              currentDay = 'Wed';
+              break;
+            case 4:
+              currentDay = 'Thu';
+              break;
+            case 5:
+              currentDay = 'Fri';
+              break;
+            case 6:
+              currentDay = 'Sat';
+              break;
+          }
+
+          (async () => {
+            try {
+              const docRef = await addDoc(collection(db, 'focused_time'), {
+                minutes: completeFocusTime,
+                userID: auth.currentUser.uid,
+                //date in a format like 12.5. (DD-MM)
+                date: `${newDate.getDate()}.${newDate.getMonth() + 1}.`,
+                dayOfWeek: currentDay,
+              });
+
+              console.log('Document written with ID: ', docRef.id);
+            } catch (e) {
+              console.error('Error adding document: ', e);
+            }
+          })();
           return () => clearInterval(interval);
         } else if (seconds == 0) {
           setMinutes(minutes - 1);
@@ -77,7 +120,7 @@ export default function TimerPage() {
       timer.setTimerOn(true);
       setCanCancel(true);
       setCancelTime(10);
-      setCompleteFocusTime(minutes);
+      setCompleteFocusTime(seconds);
       setHasCompleted(false);
     }, 200);
   };

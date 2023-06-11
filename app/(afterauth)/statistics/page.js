@@ -1,8 +1,33 @@
 'use client';
+import { collection, getDocs } from 'firebase/firestore';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { auth, db } from '../../../firebase/clientApp';
 
 export default function Statistics() {
+  const [totalMinutes, setTotalMinutes] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'focused_time'));
+        const docs = querySnapshot.docs.map((doc) => doc.data());
+        const filteredDocs = docs.filter(
+          (doc) => doc.userID === auth.currentUser.uid
+        );
+        const minutesSum = filteredDocs.reduce(
+          (acc, doc) => acc + doc.minutes,
+          0
+        );
+        setTotalMinutes(minutesSum);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="flex h-screen items-center justify-center">
       <AnimatePresence>
@@ -23,7 +48,7 @@ export default function Statistics() {
                 <span className="text-yellow-200">Today</span> you've focused
                 for{' '}
               </span>
-              <span className="text-white">3 hours 15 minutes. </span>
+              <span className="text-white">{totalMinutes} minutes</span>
             </div>
 
             <div className="mt-6">
@@ -31,7 +56,7 @@ export default function Statistics() {
                 This <span className="text-yellow-200">week</span> you've
                 focused for{' '}
               </span>
-              <span className="text-white">12 hours 0 minutes. </span>
+              <span className="text-white">{totalMinutes} minutes</span>
             </div>
 
             <div className="mt-6">
@@ -39,7 +64,7 @@ export default function Statistics() {
                 This <span className="text-yellow-200">month</span> you've
                 focused for{' '}
               </span>
-              <span className="text-white">43 hours 30 minutes. </span>
+              <span className="text-white">{totalMinutes} minutes</span>
             </div>
 
             <motion.div
