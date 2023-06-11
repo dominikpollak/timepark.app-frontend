@@ -1,12 +1,17 @@
 'use client';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { auth } from '../../../firebase/clientApp';
 
 export default function LoginPage() {
   const emailRef = useRef();
   const pswdRef = useRef();
+
+  useEffect(() => {
+    //when rendered, scroll to bottom
+    window.scrollTo(0, document.body.scrollHeight);
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();

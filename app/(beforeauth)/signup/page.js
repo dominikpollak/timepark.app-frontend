@@ -2,7 +2,7 @@
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { motion } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { auth } from '../../../firebase/clientApp';
 
 export default function SignupPage() {
@@ -12,6 +12,11 @@ export default function SignupPage() {
   const [pswdError, setPswdError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  useEffect(() => {
+    //when rendered, scroll to bottom
+    window.scrollTo(0, document.body.scrollHeight);
+  }, []);
 
   const handleSignup = async (e) => {
     e.preventDefault();
