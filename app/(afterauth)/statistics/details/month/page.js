@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import BarChart from '../../../../../components/barChart';
-import { db } from '../../../../../firebase/clientApp';
+import { auth, db } from '../../../../../firebase/clientApp';
 
 export default function DetailsMonth() {
   const [userData, setUserData] = useState({
@@ -24,7 +24,9 @@ export default function DetailsMonth() {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'focused_time'));
-        const docs = querySnapshot.docs.map((doc) => doc.data());
+        const docs = querySnapshot.filter(
+          (doc) => doc.userID === auth.currentUser.uid
+        );
         const monthData = docs.map((doc) => ({
           date: doc.date.split('-').reverse().join('.'),
           minutesFocused: Math.round(doc.minutes),
