@@ -37,8 +37,13 @@ export default function Layout({ children }) {
   if (loading)
     return (
       <html>
-        <body className="bg-[#573205]">
+        <body className="">
           <LoadingWheel />
+          <Image
+            src={Bg2}
+            alt="Background Image"
+            className="nodrag fixed z-10 h-screen object-cover object-[0%] md:object-[85%] lg:object-center"
+          />
         </body>
       </html>
     );

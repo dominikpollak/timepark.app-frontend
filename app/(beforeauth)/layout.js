@@ -40,6 +40,11 @@ export default function RootLayout({ children }) {
       <html>
         <body className="bg-[#573205]">
           <LoadingWheel />
+          <Image
+            src={bgImg2}
+            alt="Background Image"
+            className="nodrag fixed z-10 h-screen object-cover object-[0%] md:object-[85%] lg:object-center"
+          />
         </body>
       </html>
     );

@@ -4,7 +4,7 @@ const LoadingWheel = () => {
   return (
     <div
       role="status"
-      className="flex h-screen w-full items-center justify-center overflow-hidden"
+      className="fixed flex h-screen w-full items-center justify-center"
     >
       <svg
         aria-hidden="true"
