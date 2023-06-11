@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
             All rights reserved 2023
           </div>
           <div className="text-md mr-3 mb-1 text-right text-white lg:text-lg">
-            pic by xxx from freepik
+            pic by upklyak from freepik
           </div>
         </footer>
       </body>
