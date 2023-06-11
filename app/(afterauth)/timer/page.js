@@ -8,8 +8,8 @@ import TimerContext from '../../../context/TimerContext';
 import { auth, db } from '../../../firebase/clientApp';
 
 export default function TimerPage() {
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(5);
+  const [minutes, setMinutes] = useState(5);
+  const [seconds, setSeconds] = useState(0);
   const [failed, setFailed] = useState(false);
   const [cancelTime, setCancelTime] = useState(0);
   const [canCancel, setCanCancel] = useState(false);
@@ -120,7 +120,7 @@ export default function TimerPage() {
       timer.setTimerOn(true);
       setCanCancel(true);
       setCancelTime(10);
-      setCompleteFocusTime(seconds);
+      setCompleteFocusTime(minutes);
       setHasCompleted(false);
     }, 200);
   };

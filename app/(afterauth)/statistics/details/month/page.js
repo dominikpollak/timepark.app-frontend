@@ -24,7 +24,7 @@ export default function DetailsMonth() {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'focused_time'));
-        const docs = querySnapshot.filter(
+        const docs = querySnapshot.docs.filter(
           (doc) => doc.userID === auth.currentUser.uid
         );
         const monthData = docs.map((doc) => ({
