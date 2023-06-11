@@ -128,8 +128,8 @@ export default function RootLayout({ children }) {
 
         <div ref={ref}>{children}</div>
         <footer>
-          <div className="pb-6 pt-12 text-center text-xl text-white">
-            All rights reserved 2022
+          <div className="pb-3 pt-12 text-center text-xl text-white">
+            All rights reserved 2023
           </div>
           <div className="text-md mr-3 mb-1 text-right text-white lg:text-lg">
             pic by xxx from freepik

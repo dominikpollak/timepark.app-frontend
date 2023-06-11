@@ -21,27 +21,15 @@ export default function HomePage() {
       </SlideParagraph>
 
       <SlideParagraph initialValue={width / 1.5}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ad
-        est, dolores atque, ratione deserunt assumenda quo aut nisi qui rerum
-        voluptatum quam earum fugiat reprehenderit repellat temporibus impedit
-        ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-        placeat dolorem distinctio nihil tenetur possimus porro hic numquam
-        alias esse consectetur nostrum harum, voluptate commodi? Soluta aliquam
-        nemo impedit sunt.
+        This app will help you to get things done by breaking up individual
+        tasks among discrete intervals, separated by short breaks. It’s a great
+        way to retain motivation and focus and to make learning fun.
       </SlideParagraph>
 
       <SlideParagraph initialValue={(width / 1.5) * -1}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ad
-        est, dolores atque, ratione deserunt assumenda quo aut nisi qui rerum
-        voluptatum quam earum fugiat reprehenderit repellat temporibus impedit
-        ea.
-      </SlideParagraph>
-
-      <SlideParagraph initialValue={width / 1.5}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ad
-        est, dolores atque, ratione deserunt assumenda quo aut nisi qui rerum
-        voluptatum quam earum fugiat reprehenderit repellat temporibus impedit
-        ea.
+        Keep track of your progress throughout the day, week and a month and
+        learn when you are most productive, so you can get more work done in
+        less time.
       </SlideParagraph>
     </div>
   );
