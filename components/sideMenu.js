@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { auth } from '../firebase/clientApp';
 
 export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
   const sidebarRef = useRef();
 
-  const logout = () => {
-    console.log('lul');
+  const handleLogou = () => {
+    auth.signOut();
   };
 
   const dropIn = {
@@ -63,11 +64,11 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
           animate="visible"
           exit="exit"
           ref={sidebarRef}
-          className="fixed right-0 top-1 z-50 h-[28em] w-[12em] overflow-hidden rounded-2xl border-[4px] border-white bg-[#101a04]/[0.6] backdrop-blur-lg lg:h-[33em] lg:w-[16em]"
+          className="fixed right-0 top-1 z-50 h-[30em] w-[12em] overflow-hidden rounded-2xl border-[4px] border-white bg-[#101a04]/[0.6] backdrop-blur-lg md:h-[33em] md:w-[16em]"
         >
           {/* className='fixed right-2 top-2 h-[33em] w-[16em] border-[5px] border-[#814833] bg-[#3c150a] rounded-2xl z-50 overflow-hidden'> */}
 
-          <div className="flex h-[92%] flex-col items-center justify-between pt-[33%] text-center font-paragraph text-[1.4em] tracking-wide sm:text-[2em] xl:text-[1.7em]">
+          <div className="flex h-[92%] flex-col items-center justify-between pt-[40%] text-center font-paragraph text-[1.4em] tracking-wide md:text-[1.7em]">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
@@ -141,7 +142,7 @@ export default function SideMenu({ isToggled, setIsToggled, menuRef }) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              onClick={logout}
+              onClick={handleLogou}
               className="w-[80%] rounded-xl border-[4px] border-white bg-transparent bg-gradient-to-b px-5 text-white duration-100 hover:bg-purple-500/[0.25] md:px-7 xl:px-10"
             >
               Logout

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import ProfilePhoto from '../../../public/assets/profilePhoto.jpeg';
+import ProfilePhoto from '../../../public/assets/profile-pic.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -73,10 +73,10 @@ export default function Friends() {
                     <div>
                       <Image
                         src={friend.photo}
-                        width={90}
-                        height={90}
+                        width={80}
+                        height={80}
                         alt="Friend's profile photo"
-                        className="nodrag rounded-full"
+                        className="nodrag rounded-full bg-gray-300 p-2"
                       />
                     </div>
                     <div className="font-paragraph text-yellow-200">

@@ -1,20 +1,20 @@
 'use client';
 
-import '../../styles/globals.css';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { auth } from '../../firebase/clientApp';
 import bgImg2 from '../../public/assets/bg2.jpg';
+import '../../styles/globals.css';
+import LoadingWheel from '../../components/LoadingWheel';
 
 export default function RootLayout({ children }) {
   const ref = useRef(null);
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-  // const handleScrollCenter = () => {
-  //   setTimeout(() => {
-  //     ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  //   }, 200)
-  // }
   const handleScrollStart = () => {
     setTimeout(() => {
       ref.current?.scrollIntoView({
@@ -24,6 +24,25 @@ export default function RootLayout({ children }) {
       });
     }, 300);
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.push('/timer');
+        return;
+      }
+      setLoading(false);
+    });
+  }, [router, loading]);
+
+  if (loading)
+    return (
+      <html>
+        <body className="bg-[#573205]">
+          <LoadingWheel />
+        </body>
+      </html>
+    );
 
   return (
     <html lang="en">

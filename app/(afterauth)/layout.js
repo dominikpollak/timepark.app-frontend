@@ -1,27 +1,50 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
+import SideMenu from '../../components/sideMenu';
+import TimerContext from '../../context/TimerContext';
+import { auth } from '../../firebase/clientApp';
+import Bg2 from '../../public/assets/bg2.jpg';
+import MenuIcon from '../../public/assets/menu.png';
+import ProfilePhoto from '../../public/assets/profile-pic.svg';
 import VolumeOff from '../../public/assets/volume_off.png';
 import VolumeOn from '../../public/assets/volume_on.png';
 import '../../styles/globals.css';
-import Bg2 from '../../public/assets/bg2.jpg';
-import Image from 'next/image';
-import SideMenu from '../../components/sideMenu';
-import MenuIcon from '../../public/assets/menu.png';
-import TimerContext from '../../context/TimerContext';
-import ProfilePhoto from '../../public/assets/profilePhoto.jpeg';
-import Link from 'next/link';
+import LoadingWheel from '../../components/LoadingWheel';
 
 export default function Layout({ children }) {
   const [soundsOn, setSoundsOn] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
   const [timerOn, setTimerOn] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
   const menuRef = useRef();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        router.push('/signup');
+        return;
+      }
+      setLoading(false);
+    });
+  }, [router, loading]);
+
+  if (loading)
+    return (
+      <html>
+        <body className="bg-[#573205]">
+          <LoadingWheel />
+        </body>
+      </html>
+    );
 
   return (
     <html className="h-[100%] overflow-hidden" lang="en">
-      <head />
-
       <body>
         {!timerOn && (
           <Link
@@ -34,10 +57,10 @@ export default function Layout({ children }) {
                 width={70}
                 height={70}
                 alt="Your profile photo"
-                className="nodrag md-w-[70px] w-[50px] rounded-full"
+                className="nodrag md-w-[70px] w-[50px] rounded-full bg-gray-300 p-1"
               ></Image>
               <span className="ml-4 font-paragraph text-xl text-yellow-200 md:text-2xl">
-                Matthew
+                {auth.currentUser.email}
               </span>
             </div>
           </Link>
