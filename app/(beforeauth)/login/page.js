@@ -10,7 +10,11 @@ export default function LoginPage() {
 
   useEffect(() => {
     //when rendered, scroll to bottom
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo({
+      top: 850,
+      behavior: 'smooth',
+      duration: 1000,
+    });
   }, []);
 
   const handleLogin = (e) => {

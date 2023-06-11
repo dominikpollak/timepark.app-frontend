@@ -15,16 +15,6 @@ export default function RootLayout({ children }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
-  const handleScrollStart = () => {
-    setTimeout(() => {
-      ref.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        duration: 1000,
-      });
-    }, 300);
-  };
-
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -66,7 +56,6 @@ export default function RootLayout({ children }) {
         >
           <Link
             href="/"
-            onClick={handleScrollStart}
             className="bg-gradient-to-b from-yellow-100 to-orange-400 bg-clip-text font-header text-[6.5em] font-black leading-none tracking-wide
             text-transparent brightness-[120%] duration-500 hover:brightness-[140%] sm:text-[8.5em] md:text-[10em] lg:text-[12em] 2xl:text-[14em]"
           >
@@ -103,7 +92,6 @@ export default function RootLayout({ children }) {
             to-violet-800 font-header text-white shadow-xl duration-100 hover:from-cyan-500 hover:to-violet-700"
           >
             <Link
-              onClick={handleScrollStart}
               href="/login"
               className="inline-block h-full w-full px-5 py-2 text-[1.4em] sm:text-[2em] md:px-7 md:text-[2.4em] xl:px-10 2xl:text-[3.3em] "
             >
@@ -117,7 +105,6 @@ export default function RootLayout({ children }) {
             className="relative rounded-xl border-[5px] border-black bg-gradient-to-b from-yellow-200 to-orange-500 font-header text-black shadow-xl duration-100 hover:from-yellow-100 hover:to-orange-400"
           >
             <Link
-              onClick={handleScrollStart}
               href="/signup"
               className="inline-block h-full w-full px-5 py-2 text-[1.4em] sm:text-[2em] md:px-7 md:text-[2.4em] xl:px-10 2xl:text-[3.3em] "
             >
