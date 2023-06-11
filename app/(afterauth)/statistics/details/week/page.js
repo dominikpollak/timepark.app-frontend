@@ -60,6 +60,7 @@ export default function DetailsWeek() {
         },
       },
       y: {
+        max: 600,
         title: {
           display: true,
           font: {
@@ -70,6 +71,7 @@ export default function DetailsWeek() {
           font: {
             size: 15,
           },
+          stepSize: 120,
           precision: 0,
         },
       },

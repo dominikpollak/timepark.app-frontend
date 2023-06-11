@@ -75,12 +75,19 @@ export default function DetailsMonth() {
   const chartOptions = {
     scales: {
       y: {
-        beginAtZero: true, // Start Y-axis from zero
+        max: 600,
+        title: {
+          display: true,
+          font: {
+            size: 15,
+          },
+        },
         ticks: {
           font: {
-            size: 13,
+            size: 15,
           },
-          precision: 0, // Display whole numbers only
+          stepSize: 120,
+          precision: 0,
         },
       },
       x: {
