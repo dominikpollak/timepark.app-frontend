@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import LoadingWheel from '../../components/LoadingWheel';
 import SideMenu from '../../components/sideMenu';
@@ -39,24 +39,6 @@ export default function Layout({ children }) {
       <html>
         <body className="">
           <LoadingWheel />
-
-          <div className="anim relative z-20 h-0 ">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
 
           <Image
             src={Bg2}
