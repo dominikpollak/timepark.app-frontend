@@ -1,12 +1,15 @@
 'use client';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { auth } from '../../../firebase/clientApp';
 
 export default function LoginPage() {
   const emailRef = useRef();
   const pswdRef = useRef();
+  const [emailError, setEmailError] = useState('');
+  const [pswdError, setPswdError] = useState('');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   useEffect(() => {
     //when rendered, scroll to bottom
@@ -17,13 +20,34 @@ export default function LoginPage() {
     });
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const email = emailRef.current.value;
     const pswd = pswdRef.current.value;
 
-    signInWithEmailAndPassword(auth, email, pswd);
+    if (!email) {
+      setEmailError('Email is required');
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
+    setEmailError('');
+    setPswdError('');
+
+    await signInWithEmailAndPassword(auth, email, pswd)
+      .then()
+      .catch((error) => {
+        if (error.code === 'auth/wrong-password') {
+          setPswdError('Incorrect password');
+        } else if (error.code === 'auth/user-not-found') {
+          setEmailError('No user found with that email address');
+        }
+      });
   };
 
   return (
@@ -42,17 +66,30 @@ export default function LoginPage() {
           <div>Email: </div>
           <input
             ref={emailRef}
-            className="mb-12 mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
-            type="text"
+            className={`${
+              emailError ? 'mb-3' : 'mb-6'
+            } mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]`}
+            type="email"
           />
+          {emailError && (
+            <p className="mb-3 text-[1.1rem] text-red-500">{emailError}</p>
+          )}
         </label>
         <label>
           <div>Password: </div>
           <input
             ref={pswdRef}
-            className="mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black md:w-[75%]"
             type="password"
+            className={` ${
+              pswdError ? 'mb-3' : 'mb-6'
+            } mt-2 w-[100%] rounded-3xl py-2 px-4 text-center font-paragraph text-black
+              md:w-[75%]`}
+            required
+            minLength={8}
           />
+          {pswdError && (
+            <p className="mb-3 text-[1.1rem] text-red-500">{pswdError}</p>
+          )}
         </label>
         <div>
           <motion.button

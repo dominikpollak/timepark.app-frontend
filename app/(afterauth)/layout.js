@@ -27,7 +27,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        router.push('/signup');
+        router.push('/login');
         return;
       }
       setLoading(false);
@@ -72,31 +72,7 @@ export default function Layout({ children }) {
           </Link>
         )}
 
-        {timerOn ? (
-          <div className="fixed right-[1.5em] top-[1.25em] z-[60]">
-            {soundsOn ? (
-              <Image
-                priority
-                src={VolumeOn}
-                alt="Turn audio off icon"
-                height={35}
-                width={35}
-                className="invert hover:cursor-pointer hover:invert-[.75]"
-                onClick={() => setSoundsOn(!soundsOn)}
-              />
-            ) : (
-              <Image
-                priority
-                src={VolumeOff}
-                alt="Turn audio on icon"
-                height={35}
-                width={35}
-                className="invert hover:cursor-pointer hover:invert-[.75]"
-                onClick={() => setSoundsOn(!soundsOn)}
-              />
-            )}
-          </div>
-        ) : (
+        {!timerOn && (
           <div className="fixed right-[1.5em] top-[1.2em] z-[60]" ref={menuRef}>
             <Image
               src={MenuIcon}
