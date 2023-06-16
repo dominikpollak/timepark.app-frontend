@@ -2,7 +2,7 @@
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { motion } from 'framer-motion';
-import React, { use, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { auth } from '../../../firebase/clientApp';
 
 export default function SignupPage() {

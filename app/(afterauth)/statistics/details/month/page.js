@@ -25,11 +25,12 @@ export default function DetailsMonth() {
       try {
         const querySnapshot = await getDocs(collection(db, 'focused_time'));
         const docs = querySnapshot.docs.filter(
-          (doc) => doc.userID === auth.currentUser.uid
+          (doc) => doc.data().userID === auth.currentUser.uid
         );
+
         const monthData = docs.map((doc) => ({
-          date: doc.date.split('-').reverse().join('.'),
-          minutesFocused: Math.round(doc.minutes),
+          date: doc.data().date.split('-').reverse().join('.'),
+          minutesFocused: Math.round(doc.data().minutes),
         }));
 
         // Get current month and year
