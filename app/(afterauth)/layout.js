@@ -55,7 +55,7 @@ export default function Layout({ children }) {
         {!timerOn && (
           <Link
             href="/statistics"
-            className="absolute top-[1.2em] left-[1.2em] z-[60]"
+            className="absolute top-[1.2em] left-[1.2em] z-40"
           >
             <div className="flex items-center">
               <Image
