@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import LoadingWheel from '../../components/LoadingWheel';
 import SideMenu from '../../components/sideMenu';
 import TimerContext from '../../context/TimerContext';
 import { auth } from '../../firebase/clientApp';
@@ -14,6 +13,7 @@ import ProfilePhoto from '../../public/assets/profile-pic.svg';
 import VolumeOff from '../../public/assets/volume_off.png';
 import VolumeOn from '../../public/assets/volume_on.png';
 import '../../styles/globals.css';
+import LoadingWheel from '../../components/LoadingWheel';
 
 export default function Layout({ children }) {
   const [soundsOn, setSoundsOn] = useState(false);
@@ -27,19 +27,18 @@ export default function Layout({ children }) {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        router.push('/login');
+        router.push('/signup');
         return;
       }
       setLoading(false);
     });
-  }, [router]);
+  }, []);
 
   if (loading)
     return (
       <html>
         <body className="">
           <LoadingWheel />
-
           <Image
             src={Bg2}
             alt="Background Image"
@@ -55,7 +54,7 @@ export default function Layout({ children }) {
         {!timerOn && (
           <Link
             href="/statistics"
-            className="absolute top-[1.2em] left-[1.2em] z-40"
+            className="absolute top-[1.2em] left-[1.2em] z-[60]"
           >
             <div className="flex items-center">
               <Image
@@ -72,7 +71,31 @@ export default function Layout({ children }) {
           </Link>
         )}
 
-        {!timerOn && (
+        {timerOn ? (
+          <div className="fixed right-[1.5em] top-[1.25em] z-[60]">
+            {soundsOn ? (
+              <Image
+                priority
+                src={VolumeOn}
+                alt="Turn audio off icon"
+                height={35}
+                width={35}
+                className="invert hover:cursor-pointer hover:invert-[.75]"
+                onClick={() => setSoundsOn(!soundsOn)}
+              />
+            ) : (
+              <Image
+                priority
+                src={VolumeOff}
+                alt="Turn audio on icon"
+                height={35}
+                width={35}
+                className="invert hover:cursor-pointer hover:invert-[.75]"
+                onClick={() => setSoundsOn(!soundsOn)}
+              />
+            )}
+          </div>
+        ) : (
           <div className="fixed right-[1.5em] top-[1.2em] z-[60]" ref={menuRef}>
             <Image
               src={MenuIcon}
